@@ -14,7 +14,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: 'perrito',
       database: 'perros',
       entities: [],
-      synchronize: true,
       logging: true
     })
 

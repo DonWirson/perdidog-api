@@ -7,6 +7,9 @@ export class StrayDog {
     id: number;
 
     @Column()
+    reportDate: Date;
+
+    @Column()
     address: string;
 
     @Column()
