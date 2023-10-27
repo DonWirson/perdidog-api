@@ -1,23 +1,31 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-Entity()
+@Entity()
 export class StrayDog {
 
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
-    @Column()
+    @Column('timestamp without time zone')
     reportDate: Date;
 
-    @Column()
+    @Column('text')
     address: string;
 
-    @Column()
+    @Column('text', { nullable: true })
     photoUrl: string;
 
-    @Column({ length: 100 })
+    @Column('text', { nullable: true })
     description: string;
 
-    @Column({ default: false })
+    @Column('boolean', { default: false })
     isActive: boolean
+
+
+    @Column({
+        type: "enum",
+        enum: ["male", "female", "unknow"],
+        default: "unknow"
+    })
+    gender: string
 }

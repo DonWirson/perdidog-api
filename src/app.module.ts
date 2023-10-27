@@ -4,23 +4,29 @@ import { AppService } from './app.service';
 import { StrayDogsModule } from './stray-dogs/stray-dogs.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { DataSource } from 'typeorm/data-source/DataSource';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
+
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
-      port: Number(process.env.DB_PORT),
+      port: +process.env.DB_PORT,
+      database: process.env.DB_NAME,
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      entities: [],
-      logging: true
+      autoLoadEntities: true,
+      synchronize: true,
     }),
+
     StrayDogsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
+
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private dataSource: DataSource) { }
+}

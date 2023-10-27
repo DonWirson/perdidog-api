@@ -1,4 +1,3 @@
-# Use postgres/example user/password credentials
 version: '3.1'
 
 services:
@@ -8,6 +7,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: perdidog
-      POSTGRES_USER: thomas
-      POSTGRES_PASSWORD: perrito
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    container_name: ${DB_NAME}
