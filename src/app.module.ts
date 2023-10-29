@@ -5,6 +5,7 @@ import { StrayDogsModule } from './stray-dogs/stray-dogs.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { DataSource } from 'typeorm/data-source/DataSource';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -22,6 +23,8 @@ import { DataSource } from 'typeorm/data-source/DataSource';
     }),
 
     StrayDogsModule,
+
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,11 +1,9 @@
-import { IsBoolean, IsDate, IsIn, IsOptional, IsString, IsUUID, MaxLength, MinLength, minLength } from 'class-validator';
+import { IsBoolean, IsDateString, IsEnum, IsIn, IsOptional, IsString, IsUUID, MaxLength, MinLength, minLength } from 'class-validator';
+import { genderEnum } from 'src/core/enums/straydog.enum';
 
 export class CreateStrayDogDto {
 
-    @IsUUID()
-    id: number;
-
-    @IsDate()
+    @IsDateString()
     reportDate: Date
 
     @IsString()
@@ -13,18 +11,20 @@ export class CreateStrayDogDto {
 
     @IsString()
     @IsOptional()
-    photoUrl: string
+    photoUrl?: string
 
     @IsString()
     @IsOptional()
     @MinLength(10)
     @MaxLength(100)
-    description: string;
+    description?: string;
 
-    
-    @IsIn(['male,female,unknow'])
-    gender: string
+
+    @IsEnum(genderEnum)
+    @IsOptional()
+    gender?: string
 
     @IsBoolean()
-    isActive: boolean
+    @IsOptional()
+    isActive?: boolean
 }

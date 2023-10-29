@@ -1,3 +1,4 @@
+import { genderEnum } from "src/core/enums/straydog.enum";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -18,14 +19,12 @@ export class StrayDog {
     @Column('text', { nullable: true })
     description: string;
 
+    @Column('enum', {
+        enum: genderEnum,
+        default: null
+    })
+    gender: string;
+
     @Column('boolean', { default: false })
     isActive: boolean
-
-
-    @Column({
-        type: "enum",
-        enum: ["male", "female", "unknow"],
-        default: "unknow"
-    })
-    gender: string
 }
