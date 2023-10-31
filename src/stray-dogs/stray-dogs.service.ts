@@ -1,10 +1,9 @@
 import { HttpException, Injectable, InternalServerErrorException, NotFoundException, HttpStatus } from '@nestjs/common';
 import { CreateStrayDogDto } from './dto/create-stray-dog.dto';
 import { UpdateStrayDogDto } from './dto/update-stray-dog.dto';
-import { ObjectId, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { StrayDog } from './entities/stray-dog.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { HttpErrorByCode } from '@nestjs/common/utils/http-error-by-code.util';
 import { PaginationDto } from 'src/common/dtos/pagination.dto';
 
 @Injectable()
@@ -35,7 +34,7 @@ export class StrayDogsService {
     });
     if (!strayDogs)
       throw new NotFoundException;
-    return { strayDogs };
+    return strayDogs;
   }
 
   async findOne(id: string) {
